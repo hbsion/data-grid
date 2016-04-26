@@ -1,0 +1,17 @@
+/* CSS declarations go here */
+
+/*
+  Fonts
+ */
+
+@import '../imports/ui/stylesheets/fonts/font-roboto-condensed.css';
+@import '../imports/ui/stylesheets/fonts/font-roboto.css';
+
+@import '../imports/ui/stylesheets/cobasscss/cobasscss';
+
+
+.scroll-wrap {
+  width: 300px;
+  height: 400px;
+  border: 1px solid grey;
+}
