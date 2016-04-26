@@ -3,11 +3,6 @@ import DataGrid from 'react-datagrid';
 import sorty from 'sorty';
 import 'react-datagrid/index.css';
 
-// const data = [
-//   { id: '1', firstName: 'John', lastName: 'Bobson'},
-//   { id: '2', firstName: 'Bob', lastName: 'Mclaren'},
-// ];
-
 const columns = [
   { name: 'index', title: '#', width: 50 },
   { name: 'firstName'},
@@ -16,12 +11,6 @@ const columns = [
   { name: 'position'},
   { name: 'email'},
 ];
-
-let SORT_INFO = [ { name: 'firstName', dir: 'asc'}];
-
-// function sort(arr) {
-//   return sorty(SORT_INFO, arr);
-// }
 
 class MyDataGrid extends Component {
 
@@ -36,6 +25,7 @@ class MyDataGrid extends Component {
     this.handleColumnOrderChange = this.handleColumnOrderChange.bind(this);
     this.handleSortChange = this.handleSortChange.bind(this);
     this.handleFilter = this.handleFilter.bind(this);
+    this.onColumnResize = this.onColumnResize.bind(this);
   }
   render() {
     const {
@@ -72,6 +62,7 @@ class MyDataGrid extends Component {
       onColumnOrderChange={this.handleColumnOrderChange}
       onFilter={this.handleFilter}
       liveFilter={true}
+      onColumnResize={this.onColumnResize}
     />;
   }
 
@@ -92,32 +83,10 @@ class MyDataGrid extends Component {
   handleFilter(column, value, allFilterValues) {
     this.setState({allFilterValues});
   }
+  onColumnResize(firstCol, firstSize, secondCol, secondSize) {
+    firstCol.width = firstSize
+    this.setState({})
+  }
 }
 
-
-// const MyDataGrid = (props) => {
-//   return (
-//     <DataGrid idProperty="id" dataSource={props.list} columns={columns} />
-//   );
-// };
-
 export default MyDataGrid;
-
-
-// const MyDataGrid = React.createClass({
-//   handleColumnOrderChange: function(index, dropIndex) {
-//     const col = columns[index];
-//     columns.splice(index, 1); // delete from index, 1 item
-//     columns.splice(dropIndex, 0, col);
-//     this.setState({});
-//   },
-//   render: function() {
-//     return <DataGrid
-//       idProperty='id'
-//       dataSource={this.props.list}
-//       columns={columns}
-//       style={{height: 500}}
-//       onColumnOrderChange={this.handleColumnOrderChange}
-//     />;
-//   },
-// });
