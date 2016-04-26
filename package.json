@@ -12,10 +12,14 @@
     "lodash.includes": "^4.1.1",
     "lodash.without": "^4.1.1",
     "meteor-node-stubs": "~0.2.0",
-    "react": "^0.14.3",
+    "react": "^0.14.8",
     "react-addons-pure-render-mixin": "^0.14.3",
+    "react-addons-shallow-compare": "^0.14.8",
     "react-datagrid": "^2.0.1",
     "react-dom": "^0.14.3",
+    "react-tap-event-plugin": "^0.2.2",
+    "react-select": "^1.0.0-beta12",
+    "react-virtualized": "^6.3.0",
     "sorty": "^1.2.2"
   },
   "devDependencies": {
