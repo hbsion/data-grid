@@ -1,3 +1,6 @@
 node_modules/
 imports/*
 !imports/samples
+packages/*
+!packages/react-meteor-data
+!packages/react-template-helper
