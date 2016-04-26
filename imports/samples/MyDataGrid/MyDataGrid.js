@@ -13,6 +13,24 @@ const columns = [
   { name: 'email'},
 ];
 
+function filterRecords(records, params) {
+  let list = records;
+  Object.keys(params).forEach((name) => {
+    const columnFilter = (params[name] + '').toUpperCase();
+
+    if (columnFilter === '') {
+      return;
+    }
+
+    list = list.filter((item) => {
+      if ((item[name] + '').toUpperCase().indexOf(columnFilter) === 0) {
+        return true;
+      }
+    });
+  });
+  return list;
+}
+
 class MyDataGrid extends Component {
 
   constructor(props, context) {
@@ -22,6 +40,7 @@ class MyDataGrid extends Component {
       sortInfo: [ { name: 'firstName', dir: 'asc'}],
       allFilterValues: {},
       selectedIds: {},
+      filteredItemCount: props.list.length,
     };
 
     this.handleColumnOrderChange = this.handleColumnOrderChange.bind(this);
@@ -29,29 +48,19 @@ class MyDataGrid extends Component {
     this.handleFilter = this.handleFilter.bind(this);
     this.onColumnResize = this.onColumnResize.bind(this);
     this.onSelectionChange = this.onSelectionChange.bind(this);
+    // this.getRecordCount = this.getRecordCount.bind(this);
   }
   render() {
     const {
       sortInfo,
       allFilterValues,
       selectedIds,
+      filteredItemCount,
     } = this.state;
 
     let list = this.props.list;
     // filter
-    Object.keys(allFilterValues).forEach((name) => {
-      const columnFilter = (allFilterValues[name] + '').toUpperCase();
-
-      if (columnFilter === '') {
-        return;
-      }
-
-      list = list.filter((item) => {
-        if ((item[name] + '').toUpperCase().indexOf(columnFilter) === 0) {
-          return true;
-        }
-      });
-    });
+    list = filterRecords(list, allFilterValues);
     // sort
     list = [].concat(list);
     list = sorty(sortInfo, list);
@@ -62,6 +71,7 @@ class MyDataGrid extends Component {
         <Button primary disabled style={{marginRight: 10}}>Follow</Button>
         <Button style={{marginRight: 10}}>Follow</Button>
         <Button disabled>Follow</Button>
+        <p>Filtered: {filteredItemCount}</p>
       </div>
       <DataGrid
         idProperty='_id'
@@ -79,7 +89,6 @@ class MyDataGrid extends Component {
       />
     </div>;
   }
-
   handleColumnOrderChange(index, dropIndex) {
     const col = columns[index];
     columns.splice(index, 1);  // delete from index, 1 item
@@ -89,7 +98,12 @@ class MyDataGrid extends Component {
   handleSortChange(sortInfo) {
     this.setState({sortInfo});
   }
+  // getRecordCount(list) {
+  //   console.log('💡', list.length);
+  //   // this.setState({filteredItemCount: list.length});
+  // }
   handleFilter(column, value, allFilterValues) {
+    this.setState({filteredItemCount: filterRecords(this.props.list, allFilterValues).length});
     this.setState({allFilterValues});
   }
   onColumnResize(firstCol, firstSize, secondCol, secondSize) {
