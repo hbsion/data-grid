@@ -48,7 +48,7 @@ class MyDataGrid extends Component {
     this.handleFilter = this.handleFilter.bind(this);
     this.onColumnResize = this.onColumnResize.bind(this);
     this.onSelectionChange = this.onSelectionChange.bind(this);
-    // this.getRecordCount = this.getRecordCount.bind(this);
+    this.selectFilteredRecords = this.selectFilteredRecords.bind(this);
   }
   render() {
     const {
@@ -67,10 +67,8 @@ class MyDataGrid extends Component {
 
     return <div>
       <div className="padding:1">
-        <Button primary className="margin-r:1">Follow</Button>
-        <Button primary disabled style={{marginRight: 10}}>Follow</Button>
-        <Button style={{marginRight: 10}}>Follow</Button>
-        <Button disabled>Follow</Button>
+        <Button primary className="margin-r:1" onClick={this.selectFilteredRecords}>Select</Button>
+        <p>Selected: {Object.keys(selectedIds).length}</p>
         <p>Filtered: {filteredItemCount}</p>
       </div>
       <DataGrid
@@ -98,10 +96,6 @@ class MyDataGrid extends Component {
   handleSortChange(sortInfo) {
     this.setState({sortInfo});
   }
-  // getRecordCount(list) {
-  //   console.log('💡', list.length);
-  //   // this.setState({filteredItemCount: list.length});
-  // }
   handleFilter(column, value, allFilterValues) {
     this.setState({filteredItemCount: filterRecords(this.props.list, allFilterValues).length});
     this.setState({allFilterValues});
@@ -111,6 +105,14 @@ class MyDataGrid extends Component {
     this.setState({});
   }
   onSelectionChange(selectedIds) {
+    this.setState({selectedIds});
+  }
+  selectFilteredRecords(e) {
+    const filteredRecords = filterRecords(this.props.list, this.state.allFilterValues);
+    const selectedIds = this.state.selectedIds;
+    filteredRecords.map(record => {
+      selectedIds[record._id] = record;
+    });
     this.setState({selectedIds});
   }
 }
