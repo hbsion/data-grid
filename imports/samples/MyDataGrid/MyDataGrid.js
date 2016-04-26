@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import DataGrid from 'react-datagrid';
 import sorty from 'sorty';
 import 'react-datagrid/index.css';
+import { Button, Card, Spinner, Toggle, ComboBox, Option } from 'belle';
 
 const columns = [
   { name: 'index', title: '#', width: 50 },
@@ -55,20 +56,28 @@ class MyDataGrid extends Component {
     list = [].concat(list);
     list = sorty(sortInfo, list);
 
-    return <DataGrid
-      idProperty='_id'
-      dataSource={list}
-      columns={columns}
-      style={{height: 500}}
-      sortInfo={sortInfo}
-      onSortChange={this.handleSortChange}
-      onColumnOrderChange={this.handleColumnOrderChange}
-      onFilter={this.handleFilter}
-      liveFilter={true}
-      onColumnResize={this.onColumnResize}
-      selected={selectedIds}
-      onSelectionChange={this.onSelectionChange}
-    />;
+    return <div>
+      <div className="padding:1">
+        <Button primary className="margin-r:1">Follow</Button>
+        <Button primary disabled style={{marginRight: 10}}>Follow</Button>
+        <Button style={{marginRight: 10}}>Follow</Button>
+        <Button disabled>Follow</Button>
+      </div>
+      <DataGrid
+        idProperty='_id'
+        dataSource={list}
+        columns={columns}
+        style={{height: 500}}
+        sortInfo={sortInfo}
+        onSortChange={this.handleSortChange}
+        onColumnOrderChange={this.handleColumnOrderChange}
+        onFilter={this.handleFilter}
+        liveFilter={true}
+        onColumnResize={this.onColumnResize}
+        selected={selectedIds}
+        onSelectionChange={this.onSelectionChange}
+      />
+    </div>;
   }
 
   handleColumnOrderChange(index, dropIndex) {
