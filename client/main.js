@@ -14,24 +14,39 @@ import { ReactMeteorData } from 'meteor/react-meteor-data';
 import { Collection } from 'meteor/tapfuse:collection-global';
 
 
-// const UserData = React.createClass({
-//   mixins: [ReactMeteorData],
-//   getMeteorData() {
-//     return {
-//       items: Collection.offlineTickets.find().fetch(),
-//     };
-//   },
-//   render() {
-//     return (
-//       <MyList list={this.data.items}/>
-//     );
-//   },
-// });
+const UserData = React.createClass({
+  mixins: [ReactMeteorData],
+  getMeteorData() {
+    return {
+      items: Collection.offlineTickets.find().fetch(),
+    };
+  },
+  render() {
+    return (
+      <MyList list={this.data.items}/>
+    );
+  },
+});
     // <UserData/>
+
+const MyList = (props) => {
+  let myItem = {};
+  if (props.list.length > 0) {
+    myItem = <MyDataGrid list={props.list}/>;
+  } else {
+    myItem = <div> Loading  </div>;
+  }
+  return (
+    <div>
+      {myItem}
+    </div>
+  );
+};
+
 
 const App = (props) => {
   return (
-    <MyDataGrid/>
+    <UserData/>
   );
 };
 
