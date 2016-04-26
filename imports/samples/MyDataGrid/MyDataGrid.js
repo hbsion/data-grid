@@ -30,17 +30,35 @@ class MyDataGrid extends Component {
 
     this.state = {
       sortInfo: [ { name: 'firstName', dir: 'asc'}],
+      allFilterValues: {},
     };
 
     this.handleColumnOrderChange = this.handleColumnOrderChange.bind(this);
     this.handleSortChange = this.handleSortChange.bind(this);
+    this.handleFilter = this.handleFilter.bind(this);
   }
   render() {
     const {
       sortInfo,
+      allFilterValues,
     } = this.state;
 
     let list = this.props.list;
+    // filter
+    Object.keys(allFilterValues).forEach((name) => {
+      const columnFilter = (allFilterValues[name] + '').toUpperCase();
+
+      if (columnFilter === '') {
+        return;
+      }
+
+      list = list.filter((item) => {
+        if ((item[name] + '').toUpperCase().indexOf(columnFilter) === 0) {
+          return true;
+        }
+      });
+    });
+    // sort
     list = [].concat(list);
     list = sorty(sortInfo, list);
 
@@ -52,6 +70,8 @@ class MyDataGrid extends Component {
       sortInfo={sortInfo}
       onSortChange={this.handleSortChange}
       onColumnOrderChange={this.handleColumnOrderChange}
+      onFilter={this.handleFilter}
+      liveFilter={true}
     />;
   }
 
@@ -68,6 +88,9 @@ class MyDataGrid extends Component {
     // console.log('💣', data);
     // console.log('🔒', data2);
     this.setState({sortInfo});
+  }
+  handleFilter(column, value, allFilterValues) {
+    this.setState({allFilterValues});
   }
 }
 
