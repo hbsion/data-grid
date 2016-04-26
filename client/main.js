@@ -1,17 +1,17 @@
-// import Immutable from 'immutable';
+import Immutable from 'immutable';
 import React from 'react';
 import ReactDOM from 'react-dom';
-// import { Template } from 'meteor/templating';
-// import { ReactiveVar } from 'meteor/reactive-var';
-// import './main.html';
+import { Template } from 'meteor/templating';
+import { ReactiveVar } from 'meteor/reactive-var';
+import './main.html';
 
 // import Testing from '/imports/samples/Testing/Testing';
 // import CmsTable from '/imports/samples/CmsTable/CmsTable';
 // import FlexTableExample from '/imports/samples/FlexTableExample/FlexTableExample';
 import MyDataGrid from '/imports/samples/MyDataGrid/MyDataGrid';
 
-// import { ReactMeteorData } from 'meteor/react-meteor-data';
-// import { Collection } from 'meteor/tapfuse:collection-global';
+import { ReactMeteorData } from 'meteor/react-meteor-data';
+import { Collection } from 'meteor/tapfuse:collection-global';
 
 
 // const UserData = React.createClass({
@@ -49,14 +49,14 @@ const App = (props) => {
 //   );
 // };
 
-// Template.hello.helpers({
-//   App() {
-//     return App;
-//   },
-// });
-
-Meteor.startup(() => {
-  const content = document.getElementById('main');
-  ReactDOM.render(
-    <App/>, content);
+Template.hello.helpers({
+  App() {
+    return App;
+  },
 });
+
+// Meteor.startup(() => {
+//   const content = document.getElementById('main');
+//   ReactDOM.render(
+//     <App/>, content);
+// });
