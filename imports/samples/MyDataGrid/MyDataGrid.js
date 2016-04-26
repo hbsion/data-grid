@@ -20,17 +20,20 @@ class MyDataGrid extends Component {
     this.state = {
       sortInfo: [ { name: 'firstName', dir: 'asc'}],
       allFilterValues: {},
+      selectedIds: {},
     };
 
     this.handleColumnOrderChange = this.handleColumnOrderChange.bind(this);
     this.handleSortChange = this.handleSortChange.bind(this);
     this.handleFilter = this.handleFilter.bind(this);
     this.onColumnResize = this.onColumnResize.bind(this);
+    this.onSelectionChange = this.onSelectionChange.bind(this);
   }
   render() {
     const {
       sortInfo,
       allFilterValues,
+      selectedIds,
     } = this.state;
 
     let list = this.props.list;
@@ -53,7 +56,7 @@ class MyDataGrid extends Component {
     list = sorty(sortInfo, list);
 
     return <DataGrid
-      idProperty='id'
+      idProperty='_id'
       dataSource={list}
       columns={columns}
       style={{height: 500}}
@@ -63,6 +66,8 @@ class MyDataGrid extends Component {
       onFilter={this.handleFilter}
       liveFilter={true}
       onColumnResize={this.onColumnResize}
+      selected={selectedIds}
+      onSelectionChange={this.onSelectionChange}
     />;
   }
 
@@ -73,19 +78,17 @@ class MyDataGrid extends Component {
     this.setState({});
   }
   handleSortChange(sortInfo) {
-    // console.log(sortInfo)
-
-
-    // console.log('💣', data);
-    // console.log('🔒', data2);
     this.setState({sortInfo});
   }
   handleFilter(column, value, allFilterValues) {
     this.setState({allFilterValues});
   }
   onColumnResize(firstCol, firstSize, secondCol, secondSize) {
-    firstCol.width = firstSize
-    this.setState({})
+    firstCol.width = firstSize;
+    this.setState({});
+  }
+  onSelectionChange(selectedIds) {
+    this.setState({selectedIds});
   }
 }
 
