@@ -2,7 +2,7 @@ import React from 'react';
 import Select from 'react-select';
 import 'react-select/dist/react-select.css';
 
-const FLAVOURS = [
+const Groups = [
 	{ label: 'Chocolate', value: 'chocolate' },
 	{ label: 'Vanilla', value: 'vanilla' },
 	{ label: 'Strawberry', value: 'strawberry' },
@@ -18,9 +18,7 @@ const MultiSelectField = React.createClass({
   },
   getInitialState() {
     return {
-      disabled: false,
-      crazy: false,
-      options: FLAVOURS,
+      options: Groups,
       value: [],
     };
   },
@@ -32,7 +30,7 @@ const MultiSelectField = React.createClass({
     return (
       <div className="section">
         <h3 className="section-heading">{this.props.label}</h3>
-        <Select multi simpleValue disabled={this.state.disabled} value={this.state.value} placeholder="Select groups" options={this.state.options} onChange={this.handleSelectChange} />
+        <Select multi simpleValue value={this.state.value} placeholder="Select groups" options={this.state.options} onChange={this.handleSelectChange} />
       </div>
     );
   },
