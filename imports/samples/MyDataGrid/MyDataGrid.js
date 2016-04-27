@@ -44,7 +44,7 @@ class MyDataGrid extends Component {
       sortInfo: [ { name: 'firstName', dir: 'asc'}],
       allFilterValues: {},
       selectedIds: {},
-      selectedGroups: {},
+      selectedGroups: '',
       filteredItemCount: props.list.length,
       updateOperation: 'add',
     };
@@ -78,7 +78,7 @@ class MyDataGrid extends Component {
     list = sorty(sortInfo, list);
 
     let UpdateButton;
-    if (Object.keys(selectedIds).length) {
+    if (Object.keys(selectedIds).length && selectedGroups) {
       UpdateButton = <Button primary className="margin-r:1" onClick={this.callRecordUpdate}>Update Selected</Button>;
     } else {
       UpdateButton = <Button disabled className="margin-r:1" onClick={this.callRecordUpdate}>Update Selected</Button>;
