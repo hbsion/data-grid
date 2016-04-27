@@ -53,6 +53,7 @@ class MyDataGrid extends Component {
     this.onSelectionChange = this.onSelectionChange.bind(this);
     this.selectFilteredRecords = this.selectFilteredRecords.bind(this);
     this.deselectAll = this.deselectAll.bind(this);
+    this.toggleUpdateMode = this.toggleUpdateMode.bind(this);
   }
   render() {
     const {
@@ -79,6 +80,7 @@ class MyDataGrid extends Component {
                   defaultValue
                   firstChoiceStyle={{ backgroundColor: 'rgba(46, 204, 113, 0.8)' }}
                   secondChoiceStyle={{ backgroundColor: 'rgba(231, 76, 60, 0.8)' }}
+                  onUpdate={this.toggleUpdateMode}
                   >
             <Choice value>Add</Choice>
             <Choice value={ false }>Del</Choice>
@@ -134,6 +136,9 @@ class MyDataGrid extends Component {
   }
   deselectAll(e) {
     this.setState({selectedIds: {}});
+  }
+  toggleUpdateMode(val) {
+    console.log('👽', val);
   }
 }
 
