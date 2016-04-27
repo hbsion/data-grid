@@ -164,14 +164,16 @@ class MyDataGrid extends Component {
     this.setState({selectedGroups: selectedGroups.value});
   }
   callRecordUpdate() {
-    console.log('🍳', this.state.selectedGroups);
-    console.log('💋', this.state.updateOperation);
-    console.log('💡', Object.keys(this.state.selectedIds));
     const options = {
       idArray: Object.keys(this.state.selectedIds),
       groupsArray: this.state.selectedGroups.split(','),
     };
-    Meteor.call(`PeopleGroups/${this.state.updateOperation}`, options);
+    console.log('🎵', options);
+    Meteor.call(`PeopleGroups/${this.state.updateOperation}`, options, (err, res) => {
+      if (err) {
+        console.log('💡', err);
+      }
+    });
   }
 }
 
