@@ -75,7 +75,9 @@ class MyDataGrid extends Component {
         <div className="display:flex flex:items-center">
           <Button className="margin-r:1" onClick={this.deselectAll}>Deselect All</Button>
           <Button primary className="margin-r:1" onClick={this.selectFilteredRecords}>Select Filtered</Button>
-          <MultiSelectField/>
+          <div style={{minWidth: '200px'}}>
+            <MultiSelectField/>
+          </div>
           <Toggle className="margin-x:1"
                   defaultValue
                   firstChoiceStyle={{ backgroundColor: 'rgba(46, 204, 113, 0.8)' }}
