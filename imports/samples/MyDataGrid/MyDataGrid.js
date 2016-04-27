@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import DataGrid from 'react-datagrid';
 import sorty from 'sorty';
 import 'react-datagrid/index.css';
-import { Button, Toggle } from 'belle';
+import { Button, Toggle, Choice } from 'belle';
 import MultiSelectField from '/imports/samples/MultiSelectField/MultiSelectField';
 
 const columns = [
@@ -71,10 +71,19 @@ class MyDataGrid extends Component {
 
     return <div>
       <div className="padding:1">
-        <div>
+        <div className="display:flex flex:items-center">
           <Button className="margin-r:1" onClick={this.deselectAll}>Deselect All</Button>
           <Button primary className="margin-r:1" onClick={this.selectFilteredRecords}>Select Filtered</Button>
           <MultiSelectField/>
+          <Toggle className="margin-x:1"
+                  defaultValue
+                  firstChoiceStyle={{ backgroundColor: 'rgba(46, 204, 113, 0.8)' }}
+                  secondChoiceStyle={{ backgroundColor: 'rgba(231, 76, 60, 0.8)' }}
+                  >
+            <Choice value>Add</Choice>
+            <Choice value={ false }>Del</Choice>
+          </Toggle>
+          <Button primary className="margin-r:1">Update Selected</Button>
         </div>
         <p>Selected: {Object.keys(selectedIds).length}</p>
         <p>Filtered: {filteredItemCount}</p>
