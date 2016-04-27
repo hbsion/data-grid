@@ -49,6 +49,7 @@ class MyDataGrid extends Component {
     this.onColumnResize = this.onColumnResize.bind(this);
     this.onSelectionChange = this.onSelectionChange.bind(this);
     this.selectFilteredRecords = this.selectFilteredRecords.bind(this);
+    this.deselectAll = this.deselectAll.bind(this);
   }
   render() {
     const {
@@ -67,7 +68,8 @@ class MyDataGrid extends Component {
 
     return <div>
       <div className="padding:1">
-        <Button primary className="margin-r:1" onClick={this.selectFilteredRecords}>Select</Button>
+        <Button className="margin-r:1" onClick={this.deselectAll}>Deselect All</Button>
+        <Button primary className="margin-r:1" onClick={this.selectFilteredRecords}>Select Filtered</Button>
         <p>Selected: {Object.keys(selectedIds).length}</p>
         <p>Filtered: {filteredItemCount}</p>
       </div>
@@ -114,6 +116,9 @@ class MyDataGrid extends Component {
       selectedIds[record._id] = record;
     });
     this.setState({selectedIds});
+  }
+  deselectAll(e) {
+    this.setState({selectedIds: {}});
   }
 }
 
