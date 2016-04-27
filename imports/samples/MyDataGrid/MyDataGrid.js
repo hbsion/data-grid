@@ -2,7 +2,8 @@ import React, { Component, PropTypes } from 'react';
 import DataGrid from 'react-datagrid';
 import sorty from 'sorty';
 import 'react-datagrid/index.css';
-import { Button, Card, Spinner, Toggle, ComboBox, Option } from 'belle';
+import { Button, Toggle } from 'belle';
+import MultiSelectField from '/imports/samples/MultiSelectField/MultiSelectField';
 
 const columns = [
   { name: 'index', title: '#', width: 50 },
@@ -11,6 +12,9 @@ const columns = [
   { name: 'company'},
   { name: 'position'},
   { name: 'email'},
+  { name: 'inGroups'},
+  { name: 'labels'},
+  { name: 'infoLabels'},
 ];
 
 function filterRecords(records, params) {
@@ -21,7 +25,6 @@ function filterRecords(records, params) {
     if (columnFilter === '') {
       return;
     }
-
     list = list.filter((item) => {
       if ((item[name] + '').toUpperCase().indexOf(columnFilter) === 0) {
         return true;
@@ -68,8 +71,11 @@ class MyDataGrid extends Component {
 
     return <div>
       <div className="padding:1">
-        <Button className="margin-r:1" onClick={this.deselectAll}>Deselect All</Button>
-        <Button primary className="margin-r:1" onClick={this.selectFilteredRecords}>Select Filtered</Button>
+        <div>
+          <Button className="margin-r:1" onClick={this.deselectAll}>Deselect All</Button>
+          <Button primary className="margin-r:1" onClick={this.selectFilteredRecords}>Select Filtered</Button>
+          <MultiSelectField/>
+        </div>
         <p>Selected: {Object.keys(selectedIds).length}</p>
         <p>Filtered: {filteredItemCount}</p>
       </div>

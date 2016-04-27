@@ -12,7 +12,7 @@ import MyDataGrid from '/imports/samples/MyDataGrid/MyDataGrid';
 
 import { ReactMeteorData } from 'meteor/react-meteor-data';
 import { Collection } from 'meteor/tapfuse:collection-global';
-
+import { Spinner } from 'belle';
 
 const UserData = React.createClass({
   mixins: [ReactMeteorData],
@@ -31,10 +31,14 @@ const UserData = React.createClass({
 
 const MyList = (props) => {
   let myItem = {};
+  const modifiedList = props.list;
+  modifiedList.map(item => {
+    item.inGroups = item.inGroups.join(', ');
+  });
   if (props.list.length > 0) {
-    myItem = <MyDataGrid list={props.list}/>;
+    myItem = <MyDataGrid list={modifiedList}/>;
   } else {
-    myItem = <div> Loading  </div>;
+    myItem = <div> Loading <Spinner /> </div>;
   }
   return (
     <div>

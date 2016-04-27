@@ -13,6 +13,7 @@ const comanies = ['IBM', 'DELL', 'Apple', 'Sony', 'Microsoft', 'Nokia', 'Samsung
 const positions = ['CEO', 'CTO', 'CFO', 'Worker', 'Enginner', 'Developer', 'Sales Manager', 'Sales person', 'Idiot', 'Accountant', 'General Manager', 'Senior Developer', 'Junior Developer', 'Sys admin', 'Consultant'];
 const labelArray  = ['', 'moderator', '', 'judge'];
 const infoLabels  = ['', '', '', 'warning', '', 'duplicate', '', ''];
+const groups  = ['', '', '', 'speakers', '', '', '', ''];
 
 Meteor.startup(function() {
   if (!Collection.PeopleGroups.find().count()) {
@@ -33,6 +34,7 @@ Meteor.methods({
     for (let i = 0; i < docNumbers; i++) {
       const label = Random.choice(labelArray);
       const infoLabel = Random.choice(infoLabels);
+      const group = Random.choice(groups);
       const profile = {
         index: i,
         firstName: faker.name.firstName(),
@@ -47,7 +49,7 @@ Meteor.methods({
         isDeleted: false,
         appId: '1248hdi1bqwe2124',
         updatedAt: Date.now(),
-        inGroups: [],
+        inGroups: ['attendees', group],
         labels: label ? [label] : [],
         infoLabels: infoLabel ? [infoLabel] : [],
       };
