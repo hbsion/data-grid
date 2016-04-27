@@ -4,6 +4,7 @@ import sorty from 'sorty';
 import 'react-datagrid/index.css';
 import { Button, Toggle, Choice } from 'belle';
 import MultiSelectField from '/imports/samples/MultiSelectField/MultiSelectField';
+import { Meteor } from 'meteor/meteor';
 
 const columns = [
   { name: 'index', title: '#', width: 50 },
@@ -43,7 +44,9 @@ class MyDataGrid extends Component {
       sortInfo: [ { name: 'firstName', dir: 'asc'}],
       allFilterValues: {},
       selectedIds: {},
+      selectedGroups: {},
       filteredItemCount: props.list.length,
+      updateOperation: 'add',
     };
 
     this.handleColumnOrderChange = this.handleColumnOrderChange.bind(this);
@@ -55,6 +58,7 @@ class MyDataGrid extends Component {
     this.deselectAll = this.deselectAll.bind(this);
     this.toggleUpdateMode = this.toggleUpdateMode.bind(this);
     this.setCurrentSelection = this.setCurrentSelection.bind(this);
+    this.callRecordUpdate = this.callRecordUpdate.bind(this);
   }
   render() {
     const {
@@ -62,6 +66,8 @@ class MyDataGrid extends Component {
       allFilterValues,
       selectedIds,
       filteredItemCount,
+      selectedGroups,
+      updateOperation,
     } = this.state;
 
     let list = this.props.list;
@@ -71,13 +77,20 @@ class MyDataGrid extends Component {
     list = [].concat(list);
     list = sorty(sortInfo, list);
 
+    let UpdateButton;
+    if (Object.keys(selectedIds).length) {
+      UpdateButton = <Button primary className="margin-r:1" onClick={this.callRecordUpdate}>Update Selected</Button>;
+    } else {
+      UpdateButton = <Button disabled className="margin-r:1" onClick={this.callRecordUpdate}>Update Selected</Button>;
+    }
+
     return <div>
       <div className="padding:1">
         <div className="display:flex flex:items-center">
           <Button className="margin-r:1" onClick={this.deselectAll}>Deselect All</Button>
           <Button primary className="margin-r:1" onClick={this.selectFilteredRecords}>Select Filtered</Button>
           <div style={{minWidth: '200px'}}>
-            <MultiSelectField onUpdate={this.setCurrentSelection}/>
+            <MultiSelectField onUpdate={this.setCurrentSelection} groups={this.props.groups}/>
           </div>
           <Toggle className="margin-x:1"
                   defaultValue
@@ -88,7 +101,7 @@ class MyDataGrid extends Component {
             <Choice value>Add</Choice>
             <Choice value={ false }>Del</Choice>
           </Toggle>
-          <Button primary className="margin-r:1">Update Selected</Button>
+          {UpdateButton}
         </div>
         <p>Selected: {Object.keys(selectedIds).length}</p>
         <p>Filtered: {filteredItemCount}</p>
@@ -141,10 +154,24 @@ class MyDataGrid extends Component {
     this.setState({selectedIds: {}});
   }
   toggleUpdateMode(val) {
-    console.log('👽', val);
+    if (val.value) {
+      this.setState({updateOperation: 'add'});
+    } else {
+      this.setState({updateOperation: 'remove'});
+    }
   }
-  setCurrentSelection(val) {
-    console.log('🌶', val);
+  setCurrentSelection(selectedGroups) {
+    this.setState({selectedGroups: selectedGroups.value});
+  }
+  callRecordUpdate() {
+    console.log('🍳', this.state.selectedGroups);
+    console.log('💋', this.state.updateOperation);
+    console.log('💡', Object.keys(this.state.selectedIds));
+    const options = {
+      idArray: Object.keys(this.state.selectedIds),
+      groupsArray: this.state.selectedGroups.split(','),
+    };
+    Meteor.call(`PeopleGroups/${this.state.updateOperation}`, options);
   }
 }
 

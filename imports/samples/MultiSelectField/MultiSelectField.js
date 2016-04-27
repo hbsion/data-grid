@@ -18,7 +18,7 @@ const MultiSelectField = React.createClass({
   },
   getInitialState() {
     return {
-      options: Groups,
+      options: this.props.groups,
       value: [],
     };
   },

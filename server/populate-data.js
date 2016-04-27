@@ -4,6 +4,8 @@ import { Random } from 'meteor/random';
 
 import faker from 'faker';
 
+const compact = arr => arr.filter(Boolean);
+
 Collection.Tickets = new Mongo.Collection('tickets');
 Collection.PeopleGroups = new Mongo.Collection('PeopleGroups');
 
@@ -13,7 +15,7 @@ const comanies = ['IBM', 'DELL', 'Apple', 'Sony', 'Microsoft', 'Nokia', 'Samsung
 const positions = ['CEO', 'CTO', 'CFO', 'Worker', 'Enginner', 'Developer', 'Sales Manager', 'Sales person', 'Idiot', 'Accountant', 'General Manager', 'Senior Developer', 'Junior Developer', 'Sys admin', 'Consultant'];
 const labelArray  = ['', 'moderator', '', 'judge'];
 const infoLabels  = ['', '', '', 'warning', '', 'duplicate', '', ''];
-const groups  = ['', '', '', 'speakers', '', '', '', ''];
+const groups  = ['', '', '', 'speakers', '', '', 'attendees', ''];
 const groups2  = ['', '', '', 'judges', '', '', '', '', '', '', '', ''];
 
 Meteor.startup(function() {
@@ -44,8 +46,7 @@ Meteor.methods({
     for (let i = 0; i < docNumbers; i++) {
       const label = Random.choice(labelArray);
       const infoLabel = Random.choice(infoLabels);
-      const group = Random.choice(groups);
-      const group2 = Random.choice(groups2);
+      const inGroups = compact([Random.choice(groups), Random.choice(groups2)]);
       const profile = {
         index: i,
         firstName: faker.name.firstName(),
@@ -60,7 +61,7 @@ Meteor.methods({
         isDeleted: false,
         appId: '1248hdi1bqwe2124',
         updatedAt: Date.now(),
-        inGroups: ['attendees', group, group2],
+        inGroups: inGroups,
         labels: label ? [label] : [],
         infoLabels: infoLabel ? [infoLabel] : [],
       };

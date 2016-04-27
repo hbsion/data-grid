@@ -25,7 +25,7 @@ const UserData = React.createClass({
   getMeteorData() {
     return {
       items: Collection.offlineTickets.find().fetch(),
-      groups: Collection.PeopleGroups.find().fetch(),
+      groups: Collection.PeopleGroups.find({}, {fields: {groupName: 1}}).fetch(),
     };
   },
   render() {
@@ -39,11 +39,16 @@ const UserData = React.createClass({
 const MyList = (props) => {
   let myItem = {};
   const modifiedList = props.list;
+  const modifiedGroups = [];
   modifiedList.map(item => {
     item.inGroups = item.inGroups.join(', ');
   });
+
+  props.groups.map(item => {
+    modifiedGroups.push({value: item.groupName, label: item.groupName});
+  });
   if (props.list.length > 0 && props.groups.length > 0) {
-    myItem = <MyDataGrid list={modifiedList} groups={props.groups}/>;
+    myItem = <MyDataGrid list={modifiedList} groups={modifiedGroups}/>;
   } else {
     myItem = <div> Loading <Spinner /> </div>;
   }
