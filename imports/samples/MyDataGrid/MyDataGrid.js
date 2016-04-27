@@ -26,7 +26,7 @@ function filterRecords(records, params) {
       return;
     }
     list = list.filter((item) => {
-      if ((item[name] + '').toUpperCase().indexOf(columnFilter) === 0) {
+      if ((item[name] + '').toUpperCase().indexOf(columnFilter) !== -1) {
         return true;
       }
     });
