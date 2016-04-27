@@ -24,6 +24,9 @@ const MultiSelectField = React.createClass({
   },
   handleSelectChange(value) {
     console.log('You\'ve selected:', value);
+    if (this.props.onUpdate) {
+      this.props.onUpdate({ value });
+    }
     this.setState({ value });
   },
   render() {

@@ -54,6 +54,7 @@ class MyDataGrid extends Component {
     this.selectFilteredRecords = this.selectFilteredRecords.bind(this);
     this.deselectAll = this.deselectAll.bind(this);
     this.toggleUpdateMode = this.toggleUpdateMode.bind(this);
+    this.setCurrentSelection = this.setCurrentSelection.bind(this);
   }
   render() {
     const {
@@ -76,7 +77,7 @@ class MyDataGrid extends Component {
           <Button className="margin-r:1" onClick={this.deselectAll}>Deselect All</Button>
           <Button primary className="margin-r:1" onClick={this.selectFilteredRecords}>Select Filtered</Button>
           <div style={{minWidth: '200px'}}>
-            <MultiSelectField/>
+            <MultiSelectField onUpdate={this.setCurrentSelection}/>
           </div>
           <Toggle className="margin-x:1"
                   defaultValue
@@ -141,6 +142,9 @@ class MyDataGrid extends Component {
   }
   toggleUpdateMode(val) {
     console.log('👽', val);
+  }
+  setCurrentSelection(val) {
+    console.log('🌶', val);
   }
 }
 
