@@ -22,6 +22,14 @@ Meteor.publish('ticket-list-update', function({lastUpdatedAt = 0, session}) {
 });
 
 
+// PeopleGroups
+
+Meteor.publish('PeopleGroups-list-all', (params) => {
+  // console.log('start publish ticket-all with limit -', session);
+  return Collection.PeopleGroups.find({isDeleted: false, appId: params.session},
+    {sort: {updatedAt: 1}, fields: {isDeleted: 0}});
+});
+
 // offlineSettings holds offline collection removal sequeance
 // assignedToId: Meteor.userId() it is assigned to, or all
 // deviceUUID: device this

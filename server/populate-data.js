@@ -20,13 +20,22 @@ Meteor.startup(function() {
   if (!Collection.PeopleGroups.find().count()) {
     Collection.PeopleGroups.insert({
       groupName: 'speakers',
+      appId: '1248hdi1bqwe2124',
+      isDeleted: false,
+      updatedAt: Date.now(),
     });
     Collection.PeopleGroups.insert({
       groupName: 'attendees',
+      appId: '1248hdi1bqwe2124',
+      isDeleted: false,
+      updatedAt: Date.now(),
     });
     Collection.PeopleGroups.insert({
       groupName: 'moderators',
-    })
+      appId: '1248hdi1bqwe2124',
+      isDeleted: false,
+      updatedAt: Date.now(),
+    });
   }
 })
 
