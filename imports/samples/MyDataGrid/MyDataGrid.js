@@ -1,16 +1,36 @@
 import React, { Component, PropTypes } from 'react';
-import DataGrid from 'react-datagrid';
+import DataGrid, { ColumnGroup } from 'react-datagrid';
 import sorty from 'sorty';
 import 'react-datagrid/index.css';
 import { Button, Card, Spinner, Toggle, ComboBox, Option } from 'belle';
 
 const columns = [
-  { name: 'index', title: '#', width: 50 },
-  { name: 'firstName'},
-  { name: 'lastName'},
-  { name: 'company'},
-  { name: 'position'},
-  { name: 'email'},
+  {
+    name: 'index',
+    textAlign: 'center',
+    title: '#',
+    width: 50,
+  },
+  {
+    name: 'firstName',
+    textAlign: 'center',
+  },
+  {
+    name: 'lastName',
+    textAlign: 'center',
+  },
+  {
+    name: 'company',
+    textAlign: 'center',
+  },
+  {
+    name: 'position',
+    textAlign: 'center',
+  },
+  {
+    name: 'email',
+    textAlign: 'center',
+  },
 ];
 
 function filterRecords(records, params) {
@@ -85,6 +105,7 @@ class MyDataGrid extends Component {
         selected={selectedIds}
         onSelectionChange={this.onSelectionChange}
       />
+      <ColumnGroup width={900} fixed columns={columns} />
     </div>;
   }
   handleColumnOrderChange(index, dropIndex) {
