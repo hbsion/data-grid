@@ -10,7 +10,11 @@ import './main.html';
 // import CmsTable from '/imports/samples/CmsTable/CmsTable';
 // import FlexTableExample from '/imports/samples/FlexTableExample/FlexTableExample';
 import MyDataGrid from '/imports/samples/MyDataGrid/MyDataGrid';
+import MultiSelectField from '/imports/samples/MultiSelectField/MultiSelectField';
+import MultiSelectFilter from '/imports/samples/MultiSelectFilter/MultiSelectFilter';
 // import MdEditor from '/imports/samples/MdEditor/MdEditor';
+
+import BadgePrintPage from '/imports/ui/components/BadgePrintPage/BadgePrintPage';
 
 import { ReactMeteorData } from 'meteor/react-meteor-data';
 import { Meteor } from 'meteor/meteor';
@@ -60,10 +64,25 @@ const MyList = (props) => {
   );
 };
 
+const Groups = [
+  { label: 'Chocolate', value: 'chocolate' },
+  { label: 'Vanilla', value: 'vanilla' },
+  { label: 'Strawberry', value: 'strawberry' },
+  { label: 'Caramel', value: 'caramel' },
+  { label: 'Cookies and Cream', value: 'cookiescream' },
+  { label: 'Peppermint', value: 'peppermint' },
+];
+
+testUpdate = (val) => {
+  console.log('🌶', val);
+};
+
+    // <UserData/>
+    // <MultiSelectField groups={Groups} label="Groups" onUpdate={testUpdate}/>
 
 const App = (props) => {
   return (
-    <UserData/>
+    <BadgePrintPage/>
   );
 };
 

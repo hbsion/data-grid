@@ -1,0 +1,149 @@
+//
+//      printBadge: Styles
+//
+
+// @import url(https://fonts.googleapis.com/css?family=Quicksand:400,700);
+
+.badge-extract {
+
+}
+
+
+.badge-extract--header {
+  display: flex;
+  align-items: center;
+  font-size: 1rem;
+  padding: 1rem;
+
+  .title {
+    color: white;
+    font-size: 2em;
+    font-size: 1.5em;
+    padding-right: 1em;
+  }
+
+  @media print {
+    display: none;
+  }
+}
+
+//
+//      Print Grid
+//
+.is-for-pdf {
+
+  .grid-item {
+    height: 148.5mm !important;
+  }
+}
+
+.badge-extract--print {
+  display: flex;
+  flex-direction: column;
+
+  .top-row {
+    display: flex;
+    // justify-content: space-around;
+  }
+
+  .bottom-row {
+    display: flex;
+  }
+
+  .grid-item {
+    display: flex;
+    flex: 1;
+    justify-content: space-around;
+    align-items: center;
+    height: 138mm;
+    position: relative;
+  }
+
+  .print-label {
+    position: absolute;
+    top: 2em;
+    left: 0;
+    transform: rotate(90deg);
+    transform-origin: left top 0;
+    font-size: 1.5em;
+    padding: 1rem;
+  }
+
+  .border-dotted-right {
+    border-right: 2px dotted grey;
+  }
+
+  .border-dotted-bottom {
+    border-bottom: 2px dotted grey;
+  }
+
+  // .border-dotted-left {
+  //   border-left: 2px dotted grey;
+  // }
+
+  // .border-dotted-left {
+  //   border-left: 2px dotted grey;
+  // }
+
+}
+
+//
+//      Print Badge
+//
+
+.event-badge-print {
+  font-size: .9rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 400px;
+  padding: 2rem 0;
+  margin: 0 4rem;
+
+  .title {
+    font-family: 'Quicksand','Roboto', sans-serif;
+    font-weight: bold;
+    font-size: 2.3em;
+    margin: 0.2em 0;
+    text-align: center;
+  }
+
+  .label {
+    font-family: 'Quicksand','Roboto', sans-serif;
+    font-weight: normal;
+    font-size: 2.3em;
+    margin: 0.2em 0;
+    text-align: center;
+  }
+
+  .label-strong {
+    font-family: 'Quicksand','Roboto', sans-serif;
+    font-weight: bold;
+    font-size: 2.3em;
+    margin-top: 0;
+    margin-bottom: 0.2em;
+    text-align: center;
+  }
+
+  .badge-qrcode {
+    padding-top: 1em;
+    padding-bottom: 0.6em;
+  }
+
+  .ooQr {
+    max-width: 9em;
+    max-height: 9em;
+  }
+
+  .top-logo {
+    max-width: 100%;
+    height: 8em;
+    margin-bottom: 1em;
+  }
+
+  .bottom-logo {
+    max-width: 100%;
+    height: 3em;
+    margin-top: 1em;
+  }
+}
