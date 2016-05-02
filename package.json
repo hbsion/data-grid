@@ -22,9 +22,11 @@
     "react-datagrid": "^2.0.1",
     "react-dom": "^0.14.3",
     "react-select": "^1.0.0-beta12",
+    "react-swipe": "^5.0.3",
     "react-tap-event-plugin": "^0.2.2",
     "react-virtualized": "^6.3.0",
-    "sorty": "^1.2.2"
+    "sorty": "^1.2.2",
+    "swipe-js-iso": "^2.0.3"
   },
   "devDependencies": {
     "autoprefixer": "^6.3.1",

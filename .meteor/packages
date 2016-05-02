@@ -33,3 +33,5 @@ less
 react-meteor-data
 react-template-helper
 ox2:typography
+ox2:colors
+ox2:buttons

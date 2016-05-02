@@ -1,0 +1,141 @@
+<template name="tutorialStep1">
+  <div tutorialStep>
+    <div class="instructions-wrapper animated">
+      <p class="instructions-description">You can access the <b>MAIN MENU</b> of the app by clicking the bottom right corner button.</p>
+    </div>
+  </div>
+
+  {{> bottomMenuTutorial}}
+</template>
+
+<template name="bottomMenuTutorial">
+  <div class="bottomMenuTutorial no-drag is-open {{open}}">
+    <div class="flipper {{tab}}">
+
+      <div class="nav-controls front">
+
+        <div class="conference-profile">
+          <div class="details">
+            <h4 class="title">Conference Name</h4>
+          </div>
+          <button class="icon">Icon</button>
+        </div>
+
+        <div class="control-row top-row">
+          <button  class="menu-item">
+            <div  class="thumbnail ">
+              <span tut-bg-animation="3" class="icon ico-bubbles"></span>
+            </div>
+            <h4 class="title">Duscussion</h4>
+          </button>
+          <button  class="menu-item">
+            <div class="thumbnail ">
+              <span tut-bg-animation="3" class="icon ico-handshake"></span>
+            </div>
+            <h4 class="title">Sponsors</h4>
+          </button>
+          <button  class="menu-item">
+            <div class="thumbnail ">
+              <span tut-bg-animation="3" class="icon ico-info"></span>
+            </div>
+            <h4 class="title">Info</h4>
+          </button>
+        </div>
+        <div class="control-row">
+          <button class="menu-item">
+            <div  class="thumbnail ">
+              <span tut-bg-animation="4" class="icon ico-calendar"></span>
+            </div>
+            <h4 class="title">Agenda</h4>
+          </button>
+          <button class="menu-item">
+            <div class="thumbnail ">
+              <span tut-bg-animation="4" class="icon ico-users"></span>
+            </div>
+            <h4 class="title">People</h4>
+          </button>
+          <button class="menu-item">
+            <div class="thumbnail ">
+              <span tut-bg-animation="4" class="icon ico-map"></span>
+            </div>
+            <h4 class="title">Map</h4>
+          </button>
+        </div>
+
+        <div class="bottom-tabs {{tab}}">
+          {{#if secondaryOpen}}
+            <button class="control js-closeSecondaryMenu{{Touch}}">Back</button>
+          {{else}}
+            <button class="control is-flipped">Event</button>
+            <button class="control mini js-bottomMenuClose{{Touch}} ico-chevron-down"></button>
+            <button class="control js-flipTab{{Touch}}">My</button>
+          {{/if}}
+        </div>
+  </div>
+
+  <div class="nav-controls back {{session "ios-webview"}}">
+
+    <div class="profile">
+      <div class="details">
+        <h4 class="title">User Name</h4>
+      </div>
+        <button class="icon">Icon</button>
+    </div>
+
+    <div class="control-row top-row">
+      <button class="menu-item">
+        <div class="thumbnail ">
+          <span class="icon ico-envelope"></span>
+        </div>
+        <h4 class="title">Messages</h4>
+      </button>
+    </div>
+    <div class="control-row">
+      <button class="menu-item">
+        <div class="thumbnail ">
+          <span class="icon ico-pencil"></span>
+        </div>
+        <h4 class="title">Notes</h4>
+      </button>
+      <button class="menu-item">
+        <div class="thumbnail ">
+          <span class="icon ico-star"></span>
+        </div>
+        <h4 class="title">Favourites</h4>
+      </button>
+    </div>
+
+    <div class="bottom-tabs {{tab}}">
+      {{#if secondaryOpen}}
+        <button class="control js-closeSecondaryMenu{{Touch}}">Back</button>
+      {{else}}
+        <button class="control js-flipTab{{Touch}}">Event</button>
+        <button class="control mini js-bottomMenuClose{{Touch}} ico-chevron-down"></button>
+        <button class="control is-flipped">My</button>
+      {{/if}}
+    </div>
+  </div>
+
+
+
+    </div>
+
+    <div class="secondary-nav-controls {{session "ios-webview"}} {{secondaryOpen}}">
+      <div class="control-row top-row">
+        {{#each fronSubMenuRow1}}
+          {{> bottomMenuItem}}
+        {{/each}}
+      </div>
+      <div class="control-row">
+        {{#each fronSubMenuRow2}}
+          {{> bottomMenuItem}}
+        {{/each}}
+      </div>
+    </div>
+
+  </div>
+
+  <div class="bottom-navigation-tutorial animated no-drag left-corner" id ="bottomMenuToggle{{Touch}}">
+    <button  class="navigation-button"><span class="icon ico-th-large2"></span></button>
+  </div>
+</template>

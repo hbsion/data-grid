@@ -1,0 +1,373 @@
+@import "{}/client/spark.import.less";
+
+
+
+//
+//      Bottom Menu
+//
+
+
+/* Overlay style */
+.bottomMenuTutorial {
+  margin: .5em 1em 0;
+  font-size: 1rem;
+  z-index: @level-nav-menu;
+  position: absolute;
+  // top: 0;
+  left: 0;
+  right:0;
+  bottom: 0;
+  // background: rgba(255,255,255,1);
+
+  // opening animation
+  // visibility: hidden;
+  transform: translate3d(0, 60%, 0) scale(0);
+  transition: transform 0.4s, visibility 0s 0.4s;
+
+  //flipper
+  perspective: 1000;
+
+  @media (min-width: 560px) { /* XXX Old flex fix: px instead of rems */
+    right: auto;
+    width: 30rem;
+  }
+
+  // @media (min-height: 35rem) {
+  //   top: auto;
+  //   height: 45rem;
+  // }
+
+  &.is-open {
+    // visibility: visible;
+    transform: translate3d(0, 0%, 0) scale(1);
+    transition: transform 0.4s;
+  }
+
+  &.in-webview-ios {
+    // top: 20px;
+    // margin-top: ~"calc(1em + 20px)";;
+  }
+
+  .flipper {
+    transition: 0.6s;
+      transform-style: preserve-3d;
+      width: 100%;
+      // height: 100%;
+      //side flip
+      height: 45rem;
+      transform-origin: right center;
+
+      position: relative;
+
+      &.is-flipped {
+        // transform: rotateY(180deg);
+        transform: translateX( -100% ) rotateY( -180deg );
+      }
+  }
+
+  /* hide back of pane during swap */
+  .front, .back {
+    backface-visibility: hidden;
+    // position: absolute;
+    // top: 0;
+    // left: 0;
+  }
+
+  /* front pane, placed above back */
+  .front {
+    z-index: 2;
+  }
+
+  /* back, initially hidden pane */
+  .back {
+    transform: rotateY(180deg);
+    z-index: 3;
+    // background-color: @menu;
+  }
+
+  .profile {
+    font-size: 1.2rem;
+    display: flex;
+    background-color: lighten(@tut-back, 4%);
+    padding: .7em;
+    z-index: 10;
+    border-radius: 10px 10px 0 0;
+
+
+    .details {
+      margin-left: .5em;
+      flex: 1;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .title {
+      // &:extend(.text-overflow);
+      margin: 0;
+      color: @light-heading;
+      align-self: center;
+      color: rgb(79, 78, 78);
+      font-size: .95em;
+
+      flex: 1; /* XXX Old flex fix */
+    }
+
+    .icon {
+      &:extend(.unstyled-button);
+      color: rgb(79, 78, 78);
+      font-size: .95em;
+      flex-shrink: 0;
+      margin-right: .3em;
+      padding-top: .1em;
+    }
+  }
+
+
+  .conference-profile {
+    font-size: 1.2rem;
+    display: flex;
+    background-color: lighten(@tut-back, 4%);
+    padding: .7em;
+    z-index: 10;
+    border-radius: 10px 10px 0 0;
+
+    .details {
+      margin-left: .5em;
+      flex: 1;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .title {
+      // &:extend(.text-overflow);
+      margin: 0;
+      color: @light-heading;
+      align-self: center;
+      color: rgb(79, 78, 78);
+      font-size: .95em;
+
+      flex: 1; /* XXX Old flex fix */
+    }
+
+    .icon {
+      &:extend(.unstyled-button);
+      color: rgb(79, 78, 78);
+      font-size: .95em;
+      flex-shrink: 0;
+      margin-right: .3em;
+      padding-top: .1em;
+    }
+
+  }
+
+
+
+
+  .nav-controls, .secondary-nav-controls {
+    // overflow: hidden;
+    // overflow-y: auto;
+    // overflow-x: hidden;
+    // -webkit-overflow-scrolling: touch;
+    position: absolute;
+    // top: 9rem;
+    right: 0;
+    bottom: 60px;
+    left: 0;
+    // height: 200px;
+    background-color: lighten(@tut-back, 2%);
+    // border-left: 2px solid @tut-border;
+    // border-right: 2px solid @tut-border;
+
+    display: flex;
+    // align-items: center;
+    flex-direction: column;
+    justify-content: space-around;
+    // justify-content: center;
+    border-radius: 10px 10px 0 0;
+
+    .control-row {
+      display: flex;
+      width: 100%;
+      // margin-bottom: 1em;
+      margin: 1em 0;
+
+      &.top-row {
+        // margin-bottom: 2em;
+        // margin-top: 3em;
+        // min-height: 18rem;
+      }
+    }
+
+    &.in-webview-ios {
+      // top: ~"calc(9rem + 20px)";
+    }
+
+    .menu-item {
+      &:extend(.unstyled-button);
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      // padding: 1em;
+
+      .thumbnail {
+        margin-top: 1.4em;
+        font-size: .6em;
+      }
+
+      .icon {
+        color: @tut-text-bright;
+        font-size: 3em;
+        padding: .5em;
+        border-radius: 100%;
+        width: 3em;
+        height: 3em;
+        border: 1px solid @tut-border;
+      }
+      .title {
+        // margin: .8em 0 0;
+        line-height: 1.5em;
+        color: @tut-text-bright;
+        font-size: 1.2em;
+      }
+    }
+
+
+  }
+
+  .secondary-nav-controls {
+    background-color: white;
+    top: 12rem;
+    visibility: hidden;
+    opacity: 0;
+    transform: scale(0.9);
+    transition: transform 0.3s, opacity 0.3s, visibility 0s 0.3s;
+
+    /* hack for old flexbox that does not get margin auto child centering */
+    -webkit-box-orient: vertical; //android breaks with horizontal
+    -webkit-box-pack: center;  /* XXX Old flex fix */
+    -webkit-box-align: center;
+
+    &.is-open {
+      visibility: visible;
+      opacity: 1;
+      transform: scale(1);
+      transition: transform 0.3s, opacity 0.3s;
+    }
+  }
+
+  .bottom-tabs {
+    position: absolute;
+    display: flex;
+    -webkit-box-orient: horizontal; /* XXX Old flex fix */
+    -webkit-box-pack: center; /* XXX Old flex fix */
+    justify-content: space-around;
+    background-color: lighten(@tut-back, 4%);
+    width: 100%;
+    border-radius: 0 0 10px 10px;
+    padding: 1em;
+    // border: 2px solid @tut-border;
+
+
+
+    .control {
+      &:extend(.unstyled-button);
+      padding: .5em;
+      border: 1px solid @tut-border;
+      color: @tut-text-bright;
+      border-radius: 10px;
+      font-size: 1.2em;
+      flex: 3;
+      margin: 0 .3em; /* XXX Old flex fix - reduced from .5 */
+      min-width: 5em; /* XXX Old flex fix */
+
+      @media (min-width: 300px) {
+        min-width: 6em;
+      }
+
+
+      @media (min-width: 380px) {
+        min-width: 8em;
+      }
+
+
+      &.is-flipped {
+        transition: background-color .1s;
+        background-color: #4f4e4e;
+        color: white;
+        cursor: default;
+      }
+
+      &.mini {
+        flex: 1;
+        padding: .5em 1em; /* XXX Old flex fix */
+        min-width: 4em; /* XXX Old flex fix */
+      }
+    }
+  }
+
+}
+
+//
+//      Navigation Buttons
+//
+
+.bottom-navigation-tutorial {
+  position: absolute;
+  bottom: 0;
+  display: flex;
+  width: 6rem;
+  height: 6rem;
+  background-color: @tut-back;
+
+  &.animated {
+    animation: tutorialBackground 1.5s infinite ease-in 3s;
+  }
+
+  &.left-corner {
+    left: 0;
+    z-index: @level-nav-menu - 20;
+    border-radius: 0 100% 0 0;
+    border-top: 2px solid #4F4D4D;
+    border-right: 2px solid #4F4D4D;
+  }
+
+  &.right-corner {
+    right: 0;
+    z-index: @level-action-menu - 10;
+    border-radius: ~"100% 0 0 0";
+  }
+
+  .navigation-button {
+    &:extend(.unstyled-button);
+
+    color: white;
+
+    border-radius: 100%;
+    display: flex;
+
+    font-size: 2.8rem;
+
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    padding: 1.5rem 2.3rem .5rem .8rem;
+
+    background-color: transparent;
+
+    &.plus {
+      font-size: 3.7rem;
+      right: 0;
+      padding: 2.5rem 0 0 2rem;
+    }
+
+    .icon {
+      // font-size: .6em;
+      margin: auto;
+      animation: bounceIn 1.5s linear 1s;
+    }
+  }
+}
+
+
