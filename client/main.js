@@ -12,7 +12,7 @@ import './main.html';
 import MyDataGrid from '/imports/samples/MyDataGrid/MyDataGrid';
 import MultiSelectField from '/imports/samples/MultiSelectField/MultiSelectField';
 import MultiSelectFilter from '/imports/samples/MultiSelectFilter/MultiSelectFilter';
-import TutorialSlider from '/imports/samples/TutorialSlider/TutorialSlider';
+import TutorialSlider from '/imports/ui/components/TutorialSlider/TutorialSlider';
 // import MdEditor from '/imports/samples/MdEditor/MdEditor';
 
 // import BadgePrintPage from '/imports/ui/components/BadgePrintPage/BadgePrintPage';
