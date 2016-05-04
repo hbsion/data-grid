@@ -15,7 +15,7 @@ import MultiSelectFilter from '/imports/samples/MultiSelectFilter/MultiSelectFil
 import TutorialSlider from '/imports/ui/components/TutorialSlider/TutorialSlider';
 // import MdEditor from '/imports/samples/MdEditor/MdEditor';
 
-// import BadgePrintPage from '/imports/ui/components/BadgePrintPage/BadgePrintPage';
+import BadgePrintPage from '/imports/ui/components/BadgePrintPage/BadgePrintPage';
 
 import { ReactMeteorData } from 'meteor/react-meteor-data';
 import { Meteor } from 'meteor/meteor';
@@ -83,7 +83,8 @@ testUpdate = (val) => {
 
 const App = (props) => {
   return (
-    <TutorialSlider/>
+    <TutorialSlider type={'main'}/>
+    // <BadgePrintPage/>
   );
 };
 
