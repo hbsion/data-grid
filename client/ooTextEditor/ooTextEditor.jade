@@ -1,0 +1,7 @@
+template(name="ooTextEditor")
+  oo-box.oo-Editor-Preview(class="flex:column padding:3")
+    oo-box(class="padding-b:3 flex:content-between")
+      button.js-saveEditor(btn="action") Save
+      button.js-closeEditor(btn="neutral") Cancel
+    oo-item(class="")
+      +Quill editorValue=text

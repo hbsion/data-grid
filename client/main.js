@@ -11,6 +11,7 @@ import './main.html';
 // import FlexTableExample from '/imports/samples/FlexTableExample/FlexTableExample';
 import MyDataGrid from '/imports/samples/MyDataGrid/MyDataGrid';
 import MultiSelectField from '/imports/samples/MultiSelectField/MultiSelectField';
+import DraftEditor from '/imports/samples/DraftEditor/DraftEditor';
 import MultiSelectFilter from '/imports/samples/MultiSelectFilter/MultiSelectFilter';
 import TutorialSlider from '/imports/ui/components/TutorialSlider/TutorialSlider';
 // import MdEditor from '/imports/samples/MdEditor/MdEditor';
@@ -80,11 +81,12 @@ testUpdate = (val) => {
 
     // <UserData/>
     // <MultiSelectField groups={Groups} label="Groups" onUpdate={testUpdate}/>
+    // <BadgePrintPage/>
+    // <DraftEditor/>
 
 const App = (props) => {
   return (
-    <TutorialSlider type={'main'}/>
-    // <BadgePrintPage/>
+    <TutorialSlider type={'event'}/>
   );
 };
 

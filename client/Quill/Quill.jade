@@ -1,0 +1,36 @@
+template(name="Quill")
+  #toolbar-container
+    span.ql-formats
+      select.ql-header
+        option(value='1') Heading
+        option(value='2') Subheading
+        option(selected='') Normal
+      //- select.ql-font
+      //-   option(selected='') Sans Serif
+      //-   option(value='serif') Serif
+      //-   option(value='monospace') Monospace
+    span.ql-formats
+      button.ql-bold
+      button.ql-italic
+      button.ql-underline
+    span.ql-formats
+      select.ql-color
+      select.ql-background
+    span.ql-formats
+      button.ql-list(value='ordered')
+      button.ql-list(value='bullet')
+      select.ql-align
+        option(selected='')
+        option(value='center')
+        option(value='right')
+        option(value='justify')
+    span.ql-formats
+      button.ql-link
+      button.ql-image
+      button.ql-code-block
+    span.ql-formats
+      button.ql-clean
+  #editor-container
+    p
+      br
+
